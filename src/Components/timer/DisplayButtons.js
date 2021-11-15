@@ -1,12 +1,12 @@
 import React from 'react'
 
-export default function DisplayButtons({start, stop, resume, reset, styles, status}) {
+export default function DisplayButtons({start, stop, wait, reset, styles, disabled}) {
     return (
         <div className={styles.btns}>
-            <button className={status === 'start' ? styles.btn : styles.unActive} onClick={()=> start()}>Start</button>
-            <button className={status === 'stop' ? styles.btn : styles.unActive} onClick={()=> stop()}>Stop</button>
-            <button className={status === 'resume' ? styles.btn : styles.unActive} onClick={()=> resume()}>Resume</button>
-            <button className={status === 'resume' ? styles.btn : status === 'stop' ? styles.btn : styles.unActive} onClick={()=> reset()}>Reset</button>
+            <button className={styles.btn} onClick={()=> start()}>Start</button>
+            <button className={styles.btn} onClick={()=> stop()}>Stop</button>
+            <button className={styles.btn} onClick={()=> wait()}>Wait</button>
+            <button disabled={disabled === 'true' ? false : true} className={styles.btn} onClick={()=> reset()}>Reset</button>
         </div>
     )
 }

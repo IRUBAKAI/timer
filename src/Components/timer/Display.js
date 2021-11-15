@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import DisplayButtons from "./DisplayButtons";
 import DisplayComponent from "./DisplayComponent";
-import styles from "./Display.module.css"
+import styles from "./Display.module.css";
 
 export default function Display() {
   const [time, setTime] = useState({ s: 0, m: 0, h: 0 });
   const [timeInterval, setTimeInterval] = useState();
-  const [status, setStatus] = useState('start')
+  const [disabled, setDisabled] = useState();
 
   function start() {
-    run();
+    setTimeout(() => run(), 300);
+    setDisabled("true");
     setTimeInterval(setInterval(run, 1000));
   }
 
@@ -26,28 +27,29 @@ export default function Display() {
       updatedHours++;
       updatedMin = 0;
     }
-
-    setStatus('stop')
+    console.log(updatedSec);
     updatedSec++;
     return setTime({ s: updatedSec, m: updatedMin, h: updatedHours });
   }
 
   function stop() {
-    setStatus('resume')
-    clearInterval(timeInterval);
-  }
-
-  function resume() {
-    setStatus('stop')
-    start();
-  }
-
-  function reset() {
-    setStatus('start')
     clearInterval(timeInterval);
     setTime({ s: 0, m: 0, h: 0 });
   }
 
+  function wait() {
+    clearInterval(timeInterval);
+  }
+
+  function reset() {
+    clearInterval(timeInterval);
+    updatedSec = 0;
+    updatedMin = 0;
+    start();
+    setDisabled("false");
+  }
+
+  
   return (
     <div className={styles.content}>
       <div>
@@ -55,11 +57,11 @@ export default function Display() {
       </div>
       <div>
         <DisplayButtons
-          status={status}
+          disabled={disabled}
           styles={styles}
           start={start}
           stop={stop}
-          resume={resume}
+          wait={wait}
           reset={reset}
         />
       </div>
