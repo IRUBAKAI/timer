@@ -1,0 +1,40 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url('../components/bg-img.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.main {
+  width: 500px;
+  padding: 40px;
+  margin: 400px auto;
+  text-align: center;
+  border: 5px solid rgb(177, 241, 0);
+} 
+
+.time {
+  font-size: 40px;
+  font-weight: bold;
+  margin: 10px;
+  color: #FFD700;
+}
+
+.btn {
+  padding: 7px 20px;
+  border: 1px solid yellowgreen;
+  background-color: #FFD700;
+  margin: 0 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #000;
+  color: #FFD700;
+}
